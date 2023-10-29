@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import useLogin from "../services/loginService";
-
-const Login = () => {
-  const { onSubmitHandler, error } = useLogin();
+import useSignup from '../services/signupService';
+const Register = () => {
+  const { onSubmitHandler, error } = useSignup();
   const [userInput, setUserInput] = useState({
-    email: "",
-    password: "",
-    device:'',
+    firstname: 'john',
+    lastname: "Doe",
+    email: "daramolakehinde339@gmail.com",
+    phone:'09018913599',
+    password:'Kenny'
   });
   //payload
   const userPostData =  {
+    firstname: userInput.firstname,
+    lastname: userInput.lastname,
     email: userInput.email,
+    phone: userInput.phone,
     password: userInput.password,
-    device:userInput.device,
   }
+
   const inputChangeHandler = (input, value) => {
     setUserInput((prevState) => {
       return {
@@ -23,12 +27,10 @@ const Login = () => {
       };
     });
   };
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmitHandler({payload: userPostData});
   };
-
   return (
     <div>
       <div className="login-38">
@@ -39,13 +41,40 @@ const Login = () => {
                 <a href="login-38.html" className="logo">
                   <img src="assets/img/logos/logo-2.png" alt="logo" />
                 </a>
-                <h3>Sign Into Your Account</h3>
+                <h3>Create An Cccount</h3>
                 <form onSubmit={handleSubmit}>
+                  <div className="form-group form-box">
+                    <input
+                      name="firstname"
+                      type="text"
+                      className="form-control"
+                      placeholder="First Name"
+                      aria-label="First Name"
+                      value={userInput.firstname}
+                      onChange={(e) =>
+                        inputChangeHandler("firstname", e.target.value)
+                      }
+                    />
+                  </div>
+                  <div className="form-group form-box">
+                    <input
+                      type="text"
+                      name="lastname"
+                      className="form-control"
+                      placeholder="Last Name"
+                      aria-label="Last Name"
+                      value={userInput.lastname}
+                      onChange={(e) =>
+                        inputChangeHandler("lastname", e.target.value)
+                      }
+                    />
+                  </div>
                   <div className="form-group form-box">
                     <input
                       type="email"
                       name="email"
                       className="form-control"
+                      autoComplete="on"
                       placeholder="Email Address"
                       aria-label="Email Address"
                       value={userInput.email}
@@ -54,12 +83,26 @@ const Login = () => {
                       }
                     />
                   </div>
+                  <div className="form-group form-box">
+                    <input
+                      name="phone"
+                      type="text"
+                      className="form-control"
+                      autoComplete="on"
+                      placeholder="Phone Number"
+                      aria-label="Phone Number"
+                      value={userInput.phone}
+                      onChange={(e) =>
+                        inputChangeHandler("phone", e.target.value)
+                      }
+                    />
+                  </div>
                   <div className="form-group form-box clearfix">
                     <input
                       name="password"
                       type="password"
                       className="form-control"
-                      autoComplete="off"
+                      autoComplete="on"
                       placeholder="Password"
                       aria-label="Password"
                       value={userInput.password}
@@ -68,38 +111,23 @@ const Login = () => {
                       }
                     />
                   </div>
-                  <div className="form-group form-box clearfix">
-                    <input
-                      name="device"
-                      type="text"
-                      className="form-control"
-                      autoComplete="on"
-                      placeholder="Phone Name"
-                      aria-label="device"
-                      value={userInput.device}
-                      onChange={(e) =>
-                        inputChangeHandler("device", e.target.value)
-                      }
-                    />
-                  </div>
                   <div className="checkbox form-group form-box">
-                    <div className="form-check checkbox-theme">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="rememberMe"
-                      />
-                      <label className="form-check-label" htmlFor="rememberMe">
-                        Remember me
-                      </label>
+                    <div className="checkbox clearfix">
+                      <div className="form-check checkbox-theme">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="rememberMe"
+                        />
+                        <label className="form-check-label" htmlFor="rememberMe">
+                          I agree to the
+                          <a href="#" className="terms">
+                            terms of service
+                          </a>
+                        </label>
+                      </div>
                     </div>
-                    <a
-                      href="forgot-password-38.html"
-                      className="forgot-password"
-                    >
-                      Forgot Password
-                    </a>
                   </div>
                   <div className="form-group clearfix">
                     <button type="submit" className="btn-md btn-theme w-100">
@@ -126,10 +154,7 @@ const Login = () => {
                   </a>
                 </div>
                 <p>
-                  Don't have an account?{" "}
-                  <Link to="/register" className="thembo">
-                    Register here
-                  </Link>
+                  Already a member? <Link to="/login">Login here</Link>
                 </p>
               </div>
             </div>
@@ -141,4 +166,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
