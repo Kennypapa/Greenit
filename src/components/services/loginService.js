@@ -2,7 +2,7 @@ import axios from "axios";
 const useLogin = () => {
   const endpoint = "/login";
   const apiUrl = process.env.REACT_APP_API_URL + endpoint;
-  // const [error, setError] = useState();
+  
   const Swal = require("sweetalert2");
 
   const onSubmitHandler = async ({ payload: userPayload }) => {

@@ -44,7 +44,7 @@ const Login = () => {
                   </div>
                   <div className="form-group clearfix">
                     <button type="submit" className="btn-md btn-theme w-100">
-                      Send Me Email
+                      Submit
                     </button>
                   </div>
                   <div className="extra-login clearfix">

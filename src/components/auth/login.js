@@ -3,31 +3,31 @@ import { Link } from "react-router-dom";
 import useLogin from "../services/loginService";
 
 const Login = () => {
-  const { onSubmitHandler} = useLogin();
+  const { onSubmitHandler } = useLogin();
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
-    device:'',
+    device: "",
   });
   //payload
-  const userPostData =  {
+  const userPostData = {
     email: userInput.email,
     password: userInput.password,
-    device:userInput.device,
-  }
-   
+    device: userInput.device,
+  };
+
   const inputChangeHandler = (input, value) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        [input]: value
+        [input]: value,
       };
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmitHandler({payload: userPostData});
+    onSubmitHandler({ payload: userPostData });
   };
 
   return (
@@ -44,7 +44,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="form-group form-box">
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       className="form-control"
                       placeholder="Email Address"
@@ -84,21 +84,7 @@ const Login = () => {
                     />
                   </div>
                   <div className="checkbox form-group form-box">
-                    <div className="form-check checkbox-theme">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="rememberMe"
-                      />
-                      <label className="form-check-label" htmlhtmlFor="rememberMe">
-                        Remember me
-                      </label>
-                    </div>
-                    <Link
-                      to="/forgot-password"
-                      className="forgot-password"
-                    >
+                    <Link to="/forgot-password" className="forgot-password">
                       Forgot Password
                     </Link>
                   </div>

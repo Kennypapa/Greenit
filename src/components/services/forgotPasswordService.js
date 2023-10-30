@@ -1,7 +1,10 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const useForgotPassword = () => {
   const endpoint = "/forgot-password";
   const apiUrl = process.env.REACT_APP_API_URL + endpoint;
+  const navigate = useNavigate();
   // const [error, setError] = useState();
   const Swal = require("sweetalert2");
 
@@ -20,6 +23,10 @@ const useForgotPassword = () => {
           icon: "success",
           confirmButtonText: "Cool",
         });
+        setTimeout(() => {  
+          navigate('/reset-password');
+        }, 2000)
+        
       } else {
         console.log(response.data.message);
       }
