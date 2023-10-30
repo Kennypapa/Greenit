@@ -7,7 +7,7 @@ import Register from "./components/auth/signup";
 import ForgotPassword from './components/auth/forgotPassword';
 import ResetPassword from './components/auth/resetPassword';
 import UserProfile from './components/user/userProfile';
-import UpdateProfile from './components/user/userProfile';
+import UpdateProfile from './components/user/updateProfile';
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

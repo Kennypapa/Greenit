@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const UserProfile = () => {
-  const [userInput, setUserInput] = useState({
-    email: "",
-    firstname: "",
+  const [userData, setUserData] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true)
+  useEffect(() => {
+    // Retrieve data from localStorage
+    const storedData = localStorage.getItem('user_details');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setUserData(parsedData.data);
+    } else {
+      console.log('No data found in localStorage');
+    }
+  }, []);
+  const [userDataInput, setUserDataInput] = useState({
+    firstname: userData.firstame,
     lastname: "",
-  });
+    email: "",
+    phone: ""
+  }); 
 
   const inputChangeHandler = (input, value) => {
-    setUserInput((prevState) => {
+    setUserDataInput((prevState) => {
       return {
         ...prevState,
         [input]: value,
@@ -26,7 +39,7 @@ const UserProfile = () => {
                 <a href="login-38.html" className="logo">
                   <img src="assets/img/logos/logo-2.png" alt="logo" />
                 </a>
-                <h3>Update Your Profile</h3>
+                <h3>User Profile</h3>
                 <form>
                   <div className="form-group form-box">
                     <input
@@ -35,6 +48,11 @@ const UserProfile = () => {
                       className="form-control"
                       placeholder="First Name"
                       aria-label="First Name"
+                      value={userData.firstname}
+                      onChange={(e) =>
+                        inputChangeHandler("firstname", e.target.value)
+                      }
+                      disabled={isDisabled}
                     />
                   </div>
                   <div className="form-group form-box">
@@ -44,6 +62,11 @@ const UserProfile = () => {
                       className="form-control"
                       placeholder="Last Name"
                       aria-label="Last Name"
+                      value={userData.lastname}
+                      onChange={(e) =>
+                        inputChangeHandler("lastname", e.target.value)
+                      }
+                      disabled={isDisabled}
                     />
                   </div>
                   <div className="form-group form-box">
@@ -54,6 +77,11 @@ const UserProfile = () => {
                       autoComplete="on"
                       placeholder="Email Address"
                       aria-label="Email Address"
+                      value={userData.email}
+                      onChange={(e) =>
+                        inputChangeHandler("email", e.target.value)
+                      }
+                      disabled={isDisabled}
                     />
                   </div>
                   <div className="form-group form-box">
@@ -64,13 +92,18 @@ const UserProfile = () => {
                       autoComplete="on"
                       placeholder="Phone Number"
                       aria-label="Phone Number"
+                      value={userData.phone}
+                      onChange={(e) =>
+                        inputChangeHandler("phone", e.target.value)
+                      }
+                      disabled={isDisabled}
                     />
                   </div>
 
                   <div className="form-group clearfix">
-                    <button type="submit" className="btn-md btn-theme w-100">
+                    <Link to='/update-profile' className="btn-md btn-theme w-100">
                       Edit Profile
-                    </button>
+                    </Link>
                   </div>
                 </form>
                 <div className="clearfix"></div>
