@@ -1,6 +1,6 @@
 import axios from "axios";
-const useLogin = () => {
-  const endpoint = "/login";
+const useForgotPassword = () => {
+  const endpoint = "/forgot-password";
   const apiUrl = process.env.REACT_APP_API_URL + endpoint;
   // const [error, setError] = useState();
   const Swal = require("sweetalert2");
@@ -37,4 +37,4 @@ const useLogin = () => {
     onSubmitHandler,
   };
 };
-export default useLogin;
+export default useForgotPassword;

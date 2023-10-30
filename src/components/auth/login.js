@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useLogin from "../services/loginService";
 
 const Login = () => {
-  const { onSubmitHandler, error } = useLogin();
+  const { onSubmitHandler} = useLogin();
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
@@ -15,6 +15,7 @@ const Login = () => {
     password: userInput.password,
     device:userInput.device,
   }
+   
   const inputChangeHandler = (input, value) => {
     setUserInput((prevState) => {
       return {
@@ -90,16 +91,16 @@ const Login = () => {
                         value=""
                         id="rememberMe"
                       />
-                      <label className="form-check-label" htmlFor="rememberMe">
+                      <label className="form-check-label" htmlhtmlFor="rememberMe">
                         Remember me
                       </label>
                     </div>
-                    <a
-                      href="forgot-password-38.html"
+                    <Link
+                      to="/forgot-password"
                       className="forgot-password"
                     >
                       Forgot Password
-                    </a>
+                    </Link>
                   </div>
                   <div className="form-group clearfix">
                     <button type="submit" className="btn-md btn-theme w-100">
@@ -127,7 +128,7 @@ const Login = () => {
                 </div>
                 <p>
                   Don't have an account?{" "}
-                  <Link to="/register" className="thembo">
+                  <Link to="/signup" className="thembo">
                     Register here
                   </Link>
                 </p>

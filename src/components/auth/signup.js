@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import useSignup from '../services/signupService';
 const Register = () => {
-  const { onSubmitHandler, error } = useSignup();
+  const { onSubmitHandler} = useSignup();
   const [userInput, setUserInput] = useState({
     firstname: 'john',
     lastname: "Doe",
@@ -120,7 +120,7 @@ const Register = () => {
                           value=""
                           id="rememberMe"
                         />
-                        <label className="form-check-label" htmlFor="rememberMe">
+                        <label className="form-check-label" htmlhtmlFor="rememberMe">
                           I agree to the
                           <a href="#" className="terms">
                             terms of service

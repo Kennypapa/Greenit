@@ -5,6 +5,8 @@ import App from "./App";
 import Login from "./components/auth/login";
 import Register from "./components/auth/signup";
 import Notification from "./components/notification";
+import ForgotPassword from './components/auth/forgotPassword';
+import ResetPassword from './components/auth/resetPassword';
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -17,6 +19,8 @@ root.render(
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Register />}></Route>
           <Route path="/notification" element={<Notification />}></Route>
+          <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+          <Route path="/reset-password" element={<ResetPassword />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

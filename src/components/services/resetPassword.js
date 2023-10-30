@@ -1,7 +1,10 @@
 import axios from "axios";
-const useLogin = () => {
-  const endpoint = "/login";
+import { useNavigate } from "react-router-dom";
+
+const useResetPassword = () => {
+  const endpoint = "/reset-password";
   const apiUrl = process.env.REACT_APP_API_URL + endpoint;
+  const navigate = useNavigate();
   // const [error, setError] = useState();
   const Swal = require("sweetalert2");
 
@@ -14,12 +17,15 @@ const useLogin = () => {
         },
       });
       if (response.status === 200 || response.status === 201) {
-        Swal.fire({
-          title: response.data.message,
-          text: "Do you want to continue",
-          icon: "success",
-          confirmButtonText: "Cool",
-        });
+        setTimeout(() => {
+          Swal.fire({
+            title: response.data.message,
+            icon: "success",
+          });
+        }, 1900);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       } else {
         console.log(response.data.message);
       }
@@ -37,4 +43,4 @@ const useLogin = () => {
     onSubmitHandler,
   };
 };
-export default useLogin;
+export default useResetPassword;
