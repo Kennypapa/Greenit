@@ -3,12 +3,26 @@ import { Link } from "react-router-dom";
 import useLogin from "../services/loginService";
 
 const Login = () => {
+
   const { onSubmitHandler } = useLogin();
+  const deviceUrl = {
+    appVersion: '4.0.15', 
+    customerPushId: 'cFmPYZw2Rea3j6HW02hlFk:APA91bG8L2q5aX5LAN34gIAcjxgZvW1cXmP6_FSgMVGDZEeOtGBm8FjIZC3GPrVGOINPNNDPtK4VgEMzsDJ0b8g6ABdyeoaKP7pEG-zMqhfKB4VfSvaKj3f9sEijLM4TANsqlo4Dznsu',
+    latitude: null,
+    longitude: null,
+    source: 'MOBILE', 
+    devicePlatform: 'ANDROID',
+    deviceId: 'TECNO-CC9:PPR1.180610.011', 
+    deviceName: 'iphone', 
+    ipAddress:'129.18.220.19'
+  }
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
-    device: "",
+    device: deviceUrl,
   });
+ 
+
   //payload
   const userPostData = {
     email: userInput.email,
@@ -69,20 +83,7 @@ const Login = () => {
                       }
                     />
                   </div>
-                  <div className="form-group form-box clearfix">
-                    <input
-                      name="device"
-                      type="text"
-                      className="form-control"
-                      autoComplete="on"
-                      placeholder="Phone Name"
-                      aria-label="device"
-                      value={userInput.device}
-                      onChange={(e) =>
-                        inputChangeHandler("device", e.target.value)
-                      }
-                    />
-                  </div>
+                 
                   <div className="checkbox form-group form-box">
                     <Link to="/forgot-password" className="forgot-password">
                       Forgot Password
@@ -104,7 +105,7 @@ const Login = () => {
                   </a>
                   <a href="#" className="social-button social-button-twitter">
                     <i className="fa fa-twitter"></i>
-                  </a>
+                 </a>
                   <a href="#" className="social-button social-button-google">
                     <i className="fa fa-google"></i>
                   </a>

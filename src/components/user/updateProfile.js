@@ -6,7 +6,7 @@ const UserProfile = () => {
     firstname: "",
     lastname: "",
   });
-
+  
   const inputChangeHandler = (input, value) => {
     setUserInput((prevState) => {
       return {
