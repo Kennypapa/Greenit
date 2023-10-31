@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useUpdateProfileService from '../services/updateProfileService';
 const UserProfile = () => {
   const [userData, setUserData] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const {onSubmitHandler} = useUpdateProfileService()
   useEffect(() => {
     // Retrieve data from localStorage
     const storedData = localStorage.getItem("user_details");
@@ -27,6 +29,16 @@ const UserProfile = () => {
     });
   };
 
+  const userPayload = {
+    firstname: userDataInput.firstname,
+    lastname: userDataInput.lastname
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmitHandler({payload: userPayload})
+  }
+
   return (
     <div>
       <div className="login-38">
@@ -39,7 +51,7 @@ const UserProfile = () => {
                 </a>
                 <h3>Edit My Profile</h3>
                 <p>Note: Only firstname and Lastname Can Be Edited. </p>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group form-box">
                     <input
                       name="firstname"
@@ -51,7 +63,6 @@ const UserProfile = () => {
                       onChange={(e) =>
                         inputChangeHandler("firstname", e.target.value)
                       }
-                    
                     />
                   </div>
                   <div className="form-group form-box">
@@ -65,7 +76,6 @@ const UserProfile = () => {
                       onChange={(e) =>
                         inputChangeHandler("lastname", e.target.value)
                       }
-                     
                     />
                   </div>
                   <div className="form-group form-box">
@@ -77,9 +87,6 @@ const UserProfile = () => {
                       placeholder="Email Address"
                       aria-label="Email Address"
                       value={userData.email}
-                      onChange={(e) =>
-                        inputChangeHandler("email", e.target.value)
-                      }
                       disabled={isDisabled}
                     />
                   </div>
@@ -92,9 +99,6 @@ const UserProfile = () => {
                       placeholder="Phone Number"
                       aria-label="Phone Number"
                       value={userData.phone}
-                      onChange={(e) =>
-                        inputChangeHandler("phone", e.target.value)
-                      }
                       disabled={isDisabled}
                     />
                   </div>

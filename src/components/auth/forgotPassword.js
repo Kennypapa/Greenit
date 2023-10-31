@@ -5,6 +5,7 @@ import useForgotPassword from "../services/forgotPasswordService";
 const Login = () => {
   const { onSubmitHandler} = useForgotPassword();
   const [userInput, setUserInput] = useState('');
+  
   //payload
   const userPostData = {
     username: userInput,
